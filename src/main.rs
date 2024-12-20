@@ -334,11 +334,13 @@ impl Default for DialogueEditorApp {
         }
     }
 }
+
 impl eframe::App for DialogueEditorApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
         egui::CentralPanel::default().show(ctx, |ui| {
             ui.heading("Dialogue Editor");
 
+            // Add buttons for creating and saving dialogues
             ui.horizontal(|ui| {
                 if ui.button("New Dialogue").clicked() {
                     self.create_dialogue();
@@ -348,18 +350,46 @@ impl eframe::App for DialogueEditorApp {
                 }
             });
 
+            // Display list of dialogues
             self.display_dialogue_list(ui);
 
-            // Extract the mutable reference to the selected dialogue
+            // Edit the selected dialogue
             if let Some(selected_id) = &self.selected_dialogue {
                 if let Some(dialogue) = self.dialogues.get_mut(selected_id) {
-                    // Pass the mutable reference to a standalone function
                     edit_dialogue(ui, selected_id, dialogue);
                 }
             }
         });
     }
 }
+
+
+// impl eframe::App for DialogueEditorApp {
+//     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
+//         egui::CentralPanel::default().show(ctx, |ui| {
+//             ui.heading("Dialogue Editor");
+
+//             ui.horizontal(|ui| {
+//                 if ui.button("New Dialogue").clicked() {
+//                     self.create_dialogue();
+//                 }
+//                 if ui.button("Save").clicked() {
+//                     save_to_file(&self.dialogues, "src/dialogues.json".to_string());
+//                 }
+//             });
+
+//             self.display_dialogue_list(ui);
+
+//             // Extract the mutable reference to the selected dialogue
+//             if let Some(selected_id) = &self.selected_dialogue {
+//                 if let Some(dialogue) = self.dialogues.get_mut(selected_id) {
+//                     // Pass the mutable reference to a standalone function
+//                     edit_dialogue(ui, selected_id, dialogue);
+//                 }
+//             }
+//         });
+//     }
+// }
 
 fn edit_dialogue(ui: &mut egui::Ui, id: &str, dialogue: &mut Dialogue) {
     ui.heading(format!("Editing: {}", id));
@@ -437,15 +467,31 @@ impl DialogueEditorApp {
     }
 
     fn display_dialogue_list(&mut self, ui: &mut egui::Ui) {
-        ui.vertical(|ui| {
-            for (id, dialogue) in &self.dialogues {
+        ui.label("Available Dialogues:");
+        let mut to_delete = None;
+
+        // Iterate through all dialogues
+        for (id, _dialogue) in &self.dialogues {
+            ui.horizontal(|ui| {
+                // Button to edit a dialogue
                 if ui.button(format!("Edit: {}", id)).clicked() {
                     self.selected_dialogue = Some(id.clone());
                 }
-            }
-        });
+
+                // Button to delete a dialogue
+                if ui.button("Delete").clicked() {
+                    to_delete = Some(id.clone());
+                }
+            });
+        }
+
+        // Delete the selected dialogue
+        if let Some(id) = to_delete {
+            self.dialogues.remove(&id);
+        }
     }
 }
+
 
 
 fn main() -> Result<(), eframe::Error> {
