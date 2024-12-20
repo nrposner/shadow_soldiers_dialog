@@ -400,60 +400,60 @@ impl eframe::App for DialogueEditorApp {
 //     }
 // }
 
-fn edit_dialogue(ui: &mut egui::Ui, id: &str, dialogue: &mut Dialogue) {
-    ui.heading(format!("Editing: {}", id));
+// fn edit_dialogue(ui: &mut egui::Ui, id: &str, dialogue: &mut Dialogue) {
+//     ui.heading(format!("Editing: {}", id));
 
-    // Edit Speaker
-    ui.horizontal(|ui| {
-        ui.label("Speaker:");
-        ui.text_edit_singleline(&mut dialogue.speaker);
-    });
+//     // Edit Speaker
+//     ui.horizontal(|ui| {
+//         ui.label("Speaker:");
+//         ui.text_edit_singleline(&mut dialogue.speaker);
+//     });
 
-    // Edit Intro Text
-    ui.horizontal(|ui| {
-        ui.label("Intro:");
-        ui.text_edit_multiline(&mut dialogue.intro);
-    });
+//     // Edit Intro Text
+//     ui.horizontal(|ui| {
+//         ui.label("Intro:");
+//         ui.text_edit_multiline(&mut dialogue.intro);
+//     });
 
-    // Display and Edit Dialogue Options
-    let mut to_delete = None;
-    ui.label("Options:");
-    for (index, option) in dialogue.options.iter_mut().enumerate() {
-        ui.horizontal(|ui| {
-            ui.text_edit_singleline(&mut option.description);
-            if ui.button("Delete").clicked() {
-                to_delete = Some(index);
-            }
-        });
-    }
-    if let Some(index) = to_delete {
-        dialogue.options.remove(index);
-    }
+//     // Display and Edit Dialogue Options
+//     let mut to_delete = None;
+//     ui.label("Options:");
+//     for (index, option) in dialogue.options.iter_mut().enumerate() {
+//         ui.horizontal(|ui| {
+//             ui.text_edit_singleline(&mut option.description);
+//             if ui.button("Delete").clicked() {
+//                 to_delete = Some(index);
+//             }
+//         });
+//     }
+//     if let Some(index) = to_delete {
+//         dialogue.options.remove(index);
+//     }
 
-    if ui.button("Add Option").clicked() {
-        dialogue.options.push(DialogueOption::default());
-    }
+//     if ui.button("Add Option").clicked() {
+//         dialogue.options.push(DialogueOption::default());
+//     }
 
-    // Display and Edit Passive Checks
-    ui.label("Passive Checks:");
-    for check in &mut dialogue.passive_check {
-        ui.horizontal(|ui| {
-            ui.label("Skill:");
-            ui.text_edit_singleline(&mut check.skill);
-            ui.label("Target:");
-            ui.add(egui::DragValue::new(&mut check.target));
-        });
-    }
-    if ui.button("Add Passive Check").clicked() {
-        dialogue.passive_check.push(PassiveCheck {
-            skill: "New Skill".to_string(),
-            target: 1,
-            success_text: Some("Success Text".to_string()),
-            failure_text: None,
-            speaker: None,
-        });
-    }
-}
+//     // Display and Edit Passive Checks
+//     ui.label("Passive Checks:");
+//     for check in &mut dialogue.passive_check {
+//         ui.horizontal(|ui| {
+//             ui.label("Skill:");
+//             ui.text_edit_singleline(&mut check.skill);
+//             ui.label("Target:");
+//             ui.add(egui::DragValue::new(&mut check.target));
+//         });
+//     }
+//     if ui.button("Add Passive Check").clicked() {
+//         dialogue.passive_check.push(PassiveCheck {
+//             skill: "New Skill".to_string(),
+//             target: 1,
+//             success_text: Some("Success Text".to_string()),
+//             failure_text: None,
+//             speaker: None,
+//         });
+//     }
+// }
 
 
 

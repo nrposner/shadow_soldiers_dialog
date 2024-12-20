@@ -3,7 +3,7 @@
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 use std::fs;
-use dialoguer::{Input, Select};
+use dialoguer::{Input, Select, Confirm};
 
 
 pub fn load_dialogues(file_path: &str) -> HashMap<String, Dialogue> {
@@ -67,23 +67,23 @@ fn validate_and_fill_defaults(dialogue: &mut Dialogue) {
 
 
 
-pub fn main_menu(dialogues: &mut HashMap<String, Dialogue>) {
-    loop {
-        let save_path = "src/dialogues.json".to_string();
-        println!("=== Dialogue Editor ===");
-        let options = vec!["Create Dialogue", "Edit Dialogue", "View Dialogues", "Save to File", "Exit"];
-        let selection = Select::new().items(&options).default(0).interact().unwrap();
+// pub fn main_menu(dialogues: &mut HashMap<String, Dialogue>) {
+//     loop {
+//         let save_path = "src/dialogues.json".to_string();
+//         println!("=== Dialogue Editor ===");
+//         let options = vec!["Create Dialogue", "Edit Dialogue", "View Dialogues", "Save to File", "Exit"];
+//         let selection = Select::new().items(&options).default(0).interact().unwrap();
 
-        match selection {
-            0 => create_dialogue(dialogues),
-            1 => edit_dialogue(dialogues),
-            2 => view_dialogues(dialogues),
-            3 => save_to_file(dialogues, save_path),
-            4 => break,
-            _ => println!("Invalid selection"),
-        }
-    }
-}
+//         match selection {
+//             0 => create_dialogue(dialogues),
+//             1 => edit_dialogue(dialogues),
+//             2 => view_dialogues(dialogues),
+//             3 => save_to_file(dialogues, save_path),
+//             4 => break,
+//             _ => println!("Invalid selection"),
+//         }
+//     }
+// }
 
 fn create_dialogue(dialogues: &mut HashMap<String, Dialogue>) {
     let id: String = Input::new().with_prompt("Enter Dialogue ID").interact().unwrap();
@@ -104,30 +104,133 @@ fn create_dialogue(dialogues: &mut HashMap<String, Dialogue>) {
     println!("Dialogue created successfully.");
 }
 
-fn edit_dialogue(dialogues: &mut HashMap<String, Dialogue>) {
-    let ids: Vec<String> = dialogues.keys().cloned().collect();
-    if ids.is_empty() {
-        println!("No dialogues available to edit.");
-        return;
+pub fn edit_dialogue(ui: &mut egui::Ui, id: &str, dialogue: &mut Dialogue) {
+    ui.heading(format!("Editing Dialogue: {}", id));
+
+    // Edit Speaker
+    ui.horizontal(|ui| {
+        ui.label("Speaker:");
+        ui.text_edit_singleline(&mut dialogue.speaker);
+    });
+
+    // Edit Intro Text
+    ui.horizontal(|ui| {
+        ui.label("Intro:");
+        ui.text_edit_multiline(&mut dialogue.intro);
+    });
+
+    // Edit XP Reward
+    ui.horizontal(|ui| {
+        ui.label("XP Reward:");
+        if let Some(xp) = &mut dialogue.xp_reward {
+            ui.add(egui::DragValue::new(xp));
+        } else if ui.button("Add XP Reward").clicked() {
+            dialogue.xp_reward = Some(0);
+        }
+    });
+
+    // Edit Hidden Status
+    ui.horizontal(|ui| {
+        ui.label("Is Hidden:");
+        ui.checkbox(&mut dialogue.is_hidden, "");
+    });
+
+    // Edit Time
+    ui.horizontal(|ui| {
+        ui.label("Time:");
+        if let Some(time) = &mut dialogue.time {
+            ui.add(egui::DragValue::new(time));
+        } else if ui.button("Add Time").clicked() {
+            dialogue.time = Some(0);
+        }
+    });
+
+    // Edit Options
+    ui.label("Options:");
+    for option in &mut dialogue.options {
+        ui.group(|ui| {
+            ui.horizontal(|ui| {
+                ui.label("Description:");
+                ui.text_edit_singleline(&mut option.description);
+            });
+
+            ui.horizontal(|ui| {
+                ui.label("Success Dialogue:");
+                ui.text_edit_multiline(option.success_dialogue.get_or_insert_with(String::new));
+            });
+
+            ui.horizontal(|ui| {
+                ui.label("Failure Dialogue:");
+                ui.text_edit_multiline(option.failure_dialogue.get_or_insert_with(String::new));
+            });
+
+            ui.horizontal(|ui| {
+                ui.label("Challenge Attribute:");
+                ui.text_edit_singleline(option.challenge_attribute.get_or_insert_with(String::new));
+            });
+
+            ui.horizontal(|ui| {
+                ui.label("Challenge Number:");
+                if let Some(number) = &mut option.challenge_number {
+                    ui.add(egui::DragValue::new(number));
+                } else if ui.button("Add Challenge Number").clicked() {
+                    option.challenge_number = Some(0);
+                }
+            });
+
+            ui.horizontal(|ui| {
+                ui.label("Item to Pick Up:");
+                ui.text_edit_singleline(option.item_to_pickup.get_or_insert_with(String::new));
+            });
+
+            ui.horizontal(|ui| {
+                ui.label("Visible When:");
+                ui.text_edit_singleline(option.visible_when.get_or_insert_with(String::new));
+            });
+        });
     }
 
-    let selection = Select::new().items(&ids).default(0).interact().unwrap();
-    let id = &ids[selection];
-    let dialogue = dialogues.get_mut(id).unwrap();
+    if ui.button("Add Option").clicked() {
+        dialogue.options.push(DialogueOption::default());
+    }
 
-    dialogue.speaker = Input::new()
-        .with_prompt("Edit Speaker")
-        .default(dialogue.speaker.clone())
-        .interact()
-        .unwrap();
-    dialogue.intro = Input::new()
-        .with_prompt("Edit Intro Text")
-        .default(dialogue.intro.clone())
-        .interact()
-        .unwrap();
+    // Edit Passive Checks
+    ui.label("Passive Checks:");
+    for check in &mut dialogue.passive_check {
+        ui.group(|ui| {
+            ui.horizontal(|ui| {
+                ui.label("Skill:");
+                ui.text_edit_singleline(&mut check.skill);
+            });
 
-    println!("Dialogue updated successfully.");
+            ui.horizontal(|ui| {
+                ui.label("Target:");
+                ui.add(egui::DragValue::new(&mut check.target));
+            });
+
+            ui.horizontal(|ui| {
+                ui.label("Success Text:");
+                ui.text_edit_multiline(check.success_text.get_or_insert_with(String::new));
+            });
+
+            ui.horizontal(|ui| {
+                ui.label("Failure Text:");
+                ui.text_edit_multiline(check.failure_text.get_or_insert_with(String::new));
+            });
+
+            ui.horizontal(|ui| {
+                ui.label("Speaker:");
+                ui.text_edit_singleline(check.speaker.get_or_insert_with(String::new));
+            });
+        });
+    }
+
+    if ui.button("Add Passive Check").clicked() {
+        dialogue.passive_check.push(PassiveCheck::default());
+    }
 }
+
+
 
 fn view_dialogues(dialogues: &HashMap<String, Dialogue>) {
     for (id, dialogue) in dialogues {
@@ -203,6 +306,19 @@ pub struct PassiveCheck {
     pub failure_text: Option<String>, // Text to display on failure (Optional)
     pub speaker: Option<String>, // The speaker, who will be the same in both success and failure cases
 }
+
+impl Default for PassiveCheck {
+    fn default() -> Self {
+        Self {
+            skill: String::new(),
+            target: 1,
+            success_text: None,
+            failure_text: None,
+            speaker: None,
+        }
+    }
+}
+
 
 impl Default for DialogueOption {
     fn default() -> Self {
