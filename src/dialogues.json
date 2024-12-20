@@ -1,24 +1,4 @@
 {
-  "Test_Dialogue": {
-    "speaker": "bla",
-    "intro": "Hello, my name is clocky",
-    "options": [
-      {
-        "description": "Continue",
-        "challenge_attribute": null,
-        "challenge_number": null,
-        "success_dialogue": "Start",
-        "failure_dialogue": null,
-        "item_to_pickup": null,
-        "visible_when": null,
-        "flags": null
-      }
-    ],
-    "passive_check": [],
-    "xp_reward": null,
-    "is_hidden": false,
-    "time": null
-  },
   "ClockGear": {
     "speaker": "Grandfather Clock",
     "intro": "That is the price. Seek out my heart, if you wish to hear more.",
@@ -46,5 +26,34 @@
     "xp_reward": 100,
     "is_hidden": false,
     "time": 10
+  },
+  "Test_Dialogue": {
+    "speaker": "bla",
+    "intro": "Hello, my name is clocky",
+    "options": [
+      {
+        "description": "Continue",
+        "challenge_attribute": null,
+        "challenge_number": null,
+        "success_dialogue": "Start",
+        "failure_dialogue": null,
+        "item_to_pickup": null,
+        "visible_when": null,
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "Dialogue_1": {
+    "speaker": "Superhero",
+    "intro": "Hello, I am a superhero!",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
   }
 }

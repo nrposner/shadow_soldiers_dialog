@@ -136,12 +136,23 @@ fn view_dialogues(dialogues: &HashMap<String, Dialogue>) {
 }
 
 pub fn save_to_file(dialogues: &HashMap<String, Dialogue>, file_path: String) {
+    // Load existing dialogues
+    let mut existing_dialogues = if let Ok(content) = std::fs::read_to_string(&file_path) {
+        serde_json::from_str::<HashMap<String, Dialogue>>(&content).unwrap_or_default()
+    } else {
+        HashMap::new() // Start with an empty HashMap if the file doesn't exist
+    };
 
-    let json = serde_json::to_string_pretty(&dialogues).expect("Failed to serialize dialogues");
-    fs::write(file_path, json).expect("Failed to write to file");
+    // Merge the current dialogues into the existing ones
+    existing_dialogues.extend(dialogues.clone());
 
-    println!("Dialogues saved successfully.");
+    // Serialize the merged dialogues
+    let json = serde_json::to_string_pretty(&existing_dialogues).expect("Failed to serialize dialogues");
+    std::fs::write(&file_path, json).expect("Failed to write to file");
+
+    println!("Dialogues saved successfully to {}", file_path);
 }
+
 
 
 

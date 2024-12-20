@@ -344,7 +344,7 @@ impl eframe::App for DialogueEditorApp {
                     self.create_dialogue();
                 }
                 if ui.button("Save").clicked() {
-                    save_to_file(&self.dialogues, "dialogues.json".to_string());
+                    save_to_file(&self.dialogues, "src/dialogues.json".to_string());
                 }
             });
 
