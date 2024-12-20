@@ -328,12 +328,21 @@ struct DialogueEditorApp {
 
 impl Default for DialogueEditorApp {
     fn default() -> Self {
+        // Attempt to load dialogues from the file
+        let file_path = "src/dialogues.json";
+        let dialogues = if let Ok(content) = std::fs::read_to_string(file_path) {
+            serde_json::from_str::<HashMap<String, Dialogue>>(&content).unwrap_or_default()
+        } else {
+            HashMap::new() // Start with an empty HashMap if the file doesn't exist
+        };
+
         Self {
-            dialogues: HashMap::new(),
+            dialogues,
             selected_dialogue: None,
         }
     }
 }
+
 
 impl eframe::App for DialogueEditorApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {

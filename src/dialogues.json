@@ -1,4 +1,13 @@
 {
+  "Dialogue_3": {
+    "speaker": "New Speaker2",
+    "intro": "New Intro Text3",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
   "Test_Dialogue": {
     "speaker": "bla",
     "intro": "Hello, my name is clocky",
@@ -14,24 +23,6 @@
         "flags": null
       }
     ],
-    "passive_check": [],
-    "xp_reward": null,
-    "is_hidden": false,
-    "time": null
-  },
-  "Dialogue_2": {
-    "speaker": "New Speaker98",
-    "intro": "budfiuvf",
-    "options": [],
-    "passive_check": [],
-    "xp_reward": null,
-    "is_hidden": false,
-    "time": null
-  },
-  "Dialogue_1": {
-    "speaker": "Hello1",
-    "intro": "yay",
-    "options": [],
     "passive_check": [],
     "xp_reward": null,
     "is_hidden": false,
@@ -65,9 +56,18 @@
     "is_hidden": false,
     "time": 10
   },
-  "Dialogue_3": {
-    "speaker": "New Speaker2",
-    "intro": "New Intro Text3",
+  "Dialogue_2": {
+    "speaker": "New Speaker98",
+    "intro": "budfiuvf",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "Dialogue_1": {
+    "speaker": "Hello1",
+    "intro": "ya",
     "options": [],
     "passive_check": [],
     "xp_reward": null,
