@@ -1,0 +1,50 @@
+{
+  "Test_Dialogue": {
+    "speaker": "bla",
+    "intro": "Hello, my name is clocky",
+    "options": [
+      {
+        "description": "Continue",
+        "challenge_attribute": null,
+        "challenge_number": null,
+        "success_dialogue": "Start",
+        "failure_dialogue": null,
+        "item_to_pickup": null,
+        "visible_when": null,
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockGear": {
+    "speaker": "Grandfather Clock",
+    "intro": "That is the price. Seek out my heart, if you wish to hear more.",
+    "options": [
+      {
+        "description": "Can you help me?",
+        "challenge_attribute": null,
+        "challenge_number": null,
+        "success_dialogue": "I can guide you.",
+        "failure_dialogue": null,
+        "item_to_pickup": null,
+        "visible_when": null,
+        "flags": null
+      }
+    ],
+    "passive_check": [
+      {
+        "skill": "gizmo",
+        "target": 8,
+        "success_text": "A gear, it must be. Check the inside. Let's see what's missing.",
+        "failure_text": null,
+        "speaker": "Gizmo"
+      }
+    ],
+    "xp_reward": 100,
+    "is_hidden": false,
+    "time": 10
+  }
+}

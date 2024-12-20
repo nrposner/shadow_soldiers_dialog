@@ -1,0 +1,30 @@
+{
+  "Dialogue_1": {
+    "speaker": "Superhero",
+    "intro": "Hello, I am a superhero",
+    "options": [
+      {
+        "description": "SuperJust",
+        "challenge_attribute": null,
+        "challenge_number": null,
+        "success_dialogue": "Start",
+        "failure_dialogue": null,
+        "item_to_pickup": null,
+        "visible_when": null,
+        "flags": null
+      }
+    ],
+    "passive_check": [
+      {
+        "skill": "apparatchik",
+        "target": 12,
+        "success_text": "Success Text",
+        "failure_text": null,
+        "speaker": null
+      }
+    ],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  }
+}
