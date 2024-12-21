@@ -1,33 +1,4 @@
 {
-  "Dialogue_3": {
-    "speaker": "New Speaker2",
-    "intro": "New Intro Text3",
-    "options": [],
-    "passive_check": [],
-    "xp_reward": null,
-    "is_hidden": false,
-    "time": null
-  },
-  "Test_Dialogue": {
-    "speaker": "bla",
-    "intro": "Hello, my name is clocky",
-    "options": [
-      {
-        "description": "Continue",
-        "challenge_attribute": null,
-        "challenge_number": null,
-        "success_dialogue": "Start",
-        "failure_dialogue": null,
-        "item_to_pickup": null,
-        "visible_when": null,
-        "flags": null
-      }
-    ],
-    "passive_check": [],
-    "xp_reward": null,
-    "is_hidden": false,
-    "time": null
-  },
   "ClockGear": {
     "speaker": "Grandfather Clock",
     "intro": "That is the price. Seek out my heart, if you wish to hear more.",
@@ -56,18 +27,67 @@
     "is_hidden": false,
     "time": 10
   },
-  "Dialogue_2": {
-    "speaker": "New Speaker98",
-    "intro": "budfiuvf",
+  "Dialogue_1": {
+    "speaker": "Hello1",
+    "intro": "ya",
     "options": [],
     "passive_check": [],
     "xp_reward": null,
     "is_hidden": false,
     "time": null
   },
-  "Dialogue_1": {
-    "speaker": "Hello1",
-    "intro": "ya",
+  "Test_Dialogue": {
+    "speaker": "bla",
+    "intro": "Hello, my name is clocky",
+    "options": [
+      {
+        "description": "Continue",
+        "challenge_attribute": null,
+        "challenge_number": null,
+        "success_dialogue": "Start",
+        "failure_dialogue": null,
+        "item_to_pickup": null,
+        "visible_when": null,
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "Test_Dialogue_Clocky": {
+    "speaker": "bla",
+    "intro": "Hello, my name is clocky",
+    "options": [
+      {
+        "description": "Continue",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "Start",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "Dialogue_3": {
+    "speaker": "New Speaker2",
+    "intro": "New Intro Text3",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "Dialogue_2": {
+    "speaker": "New Speaker98",
+    "intro": "budfiuvf",
     "options": [],
     "passive_check": [],
     "xp_reward": null,

@@ -85,27 +85,61 @@ fn validate_and_fill_defaults(dialogue: &mut Dialogue) {
 //     }
 // }
 
-fn create_dialogue(dialogues: &mut HashMap<String, Dialogue>) {
-    let id: String = Input::new().with_prompt("Enter Dialogue ID").interact().unwrap();
-    let speaker: String = Input::new().with_prompt("Enter Speaker").interact().unwrap();
-    let intro: String = Input::new().with_prompt("Enter Intro Text").interact().unwrap();
 
-    let new_dialogue = Dialogue {
-        speaker,
-        intro,
-        options: vec![],
-        passive_check: vec![],
-        xp_reward: None,
-        is_hidden: false,
-        time: None,
-    };
-
-    dialogues.insert(id, new_dialogue);
-    println!("Dialogue created successfully.");
+pub fn create_dialogue(dialogues: &mut HashMap<String, Dialogue>) -> String {
+    let id = format!("Dialogue_{}", dialogues.len() + 1);
+    dialogues.insert(
+        id.clone(),
+        Dialogue {
+            speaker: "New Speaker".to_string(),
+            intro: "New Intro Text".to_string(),
+            options: vec![],
+            passive_check: vec![],
+            xp_reward: None,
+            is_hidden: false,
+            time: None,
+        },
+    );
+    id // Return the new dialogue ID
 }
 
-pub fn edit_dialogue(ui: &mut egui::Ui, id: &str, dialogue: &mut Dialogue) {
-    ui.heading(format!("Editing Dialogue: {}", id));
+
+
+// fn create_dialogue(dialogues: &mut HashMap<String, Dialogue>) {
+//     let id: String = Input::new().with_prompt("Enter Dialogue ID").interact().unwrap();
+//     let speaker: String = Input::new().with_prompt("Enter Speaker").interact().unwrap();
+//     let intro: String = Input::new().with_prompt("Enter Intro Text").interact().unwrap();
+
+//     let new_dialogue = Dialogue {
+//         speaker,
+//         intro,
+//         options: vec![],
+//         passive_check: vec![],
+//         xp_reward: None,
+//         is_hidden: false,
+//         time: None,
+//     };
+
+//     dialogues.insert(id, new_dialogue);
+//     println!("Dialogue created successfully.");
+// }
+
+pub fn edit_dialogue(ui: &mut egui::Ui, current_id: &str, dialogue: &mut Dialogue, temp_id: &mut String) -> Option<String> {
+    ui.heading(format!("Editing Dialogue: {}", current_id));
+
+    // Edit ID (Temporary Field)
+    ui.horizontal(|ui| {
+        ui.label("Dialogue ID:");
+        ui.text_edit_singleline(temp_id);
+    });
+
+    // Check if the ID has changed and confirm the update
+    let mut id_changed = false;
+    if *temp_id != current_id && !temp_id.is_empty() {
+        if ui.button("Update ID").clicked() {
+            id_changed = true;
+        }
+    }
 
     // Edit Speaker
     ui.horizontal(|ui| {
@@ -227,6 +261,12 @@ pub fn edit_dialogue(ui: &mut egui::Ui, id: &str, dialogue: &mut Dialogue) {
 
     if ui.button("Add Passive Check").clicked() {
         dialogue.passive_check.push(PassiveCheck::default());
+    }
+
+    if id_changed {
+        Some(temp_id.clone())
+    } else {
+        None
     }
 }
 

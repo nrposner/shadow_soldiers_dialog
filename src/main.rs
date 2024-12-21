@@ -324,7 +324,9 @@ impl Default for Player {
 struct DialogueEditorApp {
     dialogues: HashMap<String, Dialogue>, // Dialogues being edited
     selected_dialogue: Option<String>,   // Currently selected dialogue ID
+    temp_id: String,                     // Temporary field for editing dialogue ID
 }
+
 
 impl Default for DialogueEditorApp {
     fn default() -> Self {
@@ -339,6 +341,7 @@ impl Default for DialogueEditorApp {
         Self {
             dialogues,
             selected_dialogue: None,
+            temp_id: String::new(),
         }
     }
 }
@@ -364,13 +367,25 @@ impl eframe::App for DialogueEditorApp {
 
             // Edit the selected dialogue
             if let Some(selected_id) = &self.selected_dialogue {
-                if let Some(dialogue) = self.dialogues.get_mut(selected_id) {
-                    edit_dialogue(ui, selected_id, dialogue);
+                if let Some(dialogue) = self.dialogues.remove(selected_id) {
+                    let mut dialogue = dialogue;
+                    if self.temp_id.is_empty() {
+                        self.temp_id = selected_id.clone(); // Initialize temp_id
+                    }
+
+                    if let Some(new_id) = edit_dialogue(ui, selected_id, &mut dialogue, &mut self.temp_id) {
+                        self.dialogues.insert(new_id.clone(), dialogue);
+                        self.selected_dialogue = Some(new_id);
+                        self.temp_id.clear();
+                    } else {
+                        self.dialogues.insert(selected_id.clone(), dialogue);
+                    }
                 }
             }
         });
     }
 }
+
 
 
 // impl eframe::App for DialogueEditorApp {
@@ -459,20 +474,28 @@ impl eframe::App for DialogueEditorApp {
 
 impl DialogueEditorApp {
     fn create_dialogue(&mut self) {
-        let id = format!("Dialogue_{}", self.dialogues.len() + 1);
-        self.dialogues.insert(
-            id.clone(),
-            Dialogue {
-                speaker: "New Speaker".to_string(),
-                intro: "New Intro Text".to_string(),
-                options: vec![],
-                passive_check: vec![],
-                xp_reward: None,
-                is_hidden: false,
-                time: None,
-            },
-        );
+        let id = create_dialogue(&mut self.dialogues); // Use the function from lib.rs
+        self.temp_id = id.clone();
         self.selected_dialogue = Some(id);
+    }
+
+    fn update_dialogues(&mut self, ui: &mut egui::Ui) {
+        if let Some(selected_id) = &self.selected_dialogue {
+            if let Some(dialogue) = self.dialogues.remove(selected_id) {
+                let mut dialogue = dialogue;
+                if self.temp_id.is_empty() {
+                    self.temp_id = selected_id.clone(); // Initialize temp_id
+                }
+
+                if let Some(new_id) = edit_dialogue(ui, selected_id, &mut dialogue, &mut self.temp_id) {
+                    self.dialogues.insert(new_id.clone(), dialogue);
+                    self.selected_dialogue = Some(new_id);
+                    self.temp_id.clear();
+                } else {
+                    self.dialogues.insert(selected_id.clone(), dialogue);
+                }
+            }
+        }
     }
 
     fn display_dialogue_list(&mut self, ui: &mut egui::Ui) {
