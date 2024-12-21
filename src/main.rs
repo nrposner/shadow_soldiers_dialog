@@ -374,6 +374,10 @@ impl eframe::App for DialogueEditorApp {
                     }
 
                     if let Some(new_id) = edit_dialogue(ui, selected_id, &mut dialogue, &mut self.temp_id) {
+                        // Remove the old ID if it differs
+                        if new_id != *selected_id {
+                            self.dialogues.remove(selected_id);
+                        }
                         self.dialogues.insert(new_id.clone(), dialogue);
                         self.selected_dialogue = Some(new_id);
                         self.temp_id.clear();
@@ -385,6 +389,7 @@ impl eframe::App for DialogueEditorApp {
         });
     }
 }
+
 
 
 
