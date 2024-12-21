@@ -362,30 +362,23 @@ impl eframe::App for DialogueEditorApp {
                 }
             });
 
-            // Display list of dialogues
-            self.display_dialogue_list(ui);
+            // Use ScrollArea to wrap the rest of the content
+            egui::ScrollArea::vertical()
+                .id_source("dialogue_scroll_area") // Provide a unique identifier for the scroll area
+                .show(ui, |ui| {
+                    // Display list of dialogues
+                    self.display_dialogue_list(ui);
 
-            // Edit the selected dialogue
-            if let Some(selected_id) = &self.selected_dialogue {
-                if let Some(dialogue) = self.dialogues.remove(selected_id) {
-                    let mut dialogue = dialogue;
-                    if self.temp_id.is_empty() {
-                        self.temp_id = selected_id.clone(); // Initialize temp_id
-                    }
-
-                    if let Some(new_id) = edit_dialogue(ui, selected_id, &mut dialogue, &mut self.temp_id) {
-                        // Remove the old ID if it differs
-                        if new_id != *selected_id {
-                            self.dialogues.remove(selected_id);
+                    // Edit the selected dialogue
+                    if let Some(selected_id) = &self.selected_dialogue {
+                        if let Some(dialogue) = self.dialogues.get_mut(selected_id) {
+                            if self.temp_id.is_empty() {
+                                self.temp_id = selected_id.clone();
+                            }
+                            edit_dialogue(ui, selected_id, dialogue, &mut self.temp_id);
                         }
-                        self.dialogues.insert(new_id.clone(), dialogue);
-                        self.selected_dialogue = Some(new_id);
-                        self.temp_id.clear();
-                    } else {
-                        self.dialogues.insert(selected_id.clone(), dialogue);
                     }
-                }
-            }
+                });
         });
     }
 }
