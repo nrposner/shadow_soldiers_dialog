@@ -1,32 +1,15 @@
 # shadow_soldiers_dialog
 Making a text-based game in Rust. Disco Elysium meets Papers Please. Focusing on the dialog system
 
-I want to improve on the dialog engine I previously built with help from ChatGPT, and get more used to writing Rust from scratch. 
+We shall navigate between rooms using a specific area-level struct
 
-How should such a system work?
+Within rooms shall be Conversations, which shall each be connected to a separate .json file containing the relevant dialogues
 
-In the original, we have several functions and structs: 
+Each Conversation provides a point of entry into dialogue with a separate entity, beyond which we navigate using the regular dialogue struct. It is possible to exit a Conversation from some but not all dialogues, and if a dialogue terminates without reference to another, then it must provide an exit
+We must be careful to create a structure which catches infinite dialogue loops which would not allow exits. 
 
-a DialogueOption struct which which contains each option which may be presented in dialogue, along with things like possible skill challenges, items that can be picked up (just once), visibility option related to external flags, and the flags that get raised when this option is selected. 
+We must give further consideration to how the passive checks are to interact with the rest of the dialogue design. The main question: can success or failure on a passive check itself lead to branching outside of the passive checks? This remains unclear
 
-a Dialogue struct containing a Speaker, aka the character or voice speaking, which will be linked to a portrait, the introductory dialogue, whether and what passive checks it contains, xp rewards for arriving at this dialogue, whether it is hidden (archaic, since in the original build the dialog is accessed from a room), and how much time moves forward as a result of accessing the dialogue. 
-
-a PassiveCheck struct containing skill, target number, success and failure text, and speaker
-
-a DialogueApp struct, which holds the dialogue-relared gamestate (and the character sheet, for some reason?)
-
-
-
-
-our new design:
-
-a struct that indicates we have entered a root-level dialogue, something we enter from the world, can't enter another from inside of itself. When we exit this, we get a special EXIT DIALOGUE message and leave to the overworld
-
-a struct that contains the regular dialogue events, a combination of text proper, passive checks which may or may not trigger and may or may not branch into their own extended dialogues, before terminating and offering options
-
-One enters the above struct via a Dialogue option. Options resulting from passive checks within a dialogue are treated similarly, but you don't need to select an option to enter them, they choose for you
-
-a struct for these passive checks, more flexible to allow for branching and multiple levels stably
 
 
 
