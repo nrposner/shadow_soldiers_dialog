@@ -311,7 +311,11 @@ pub fn save_to_file(dialogues: &HashMap<String, Dialogue>, file_path: String) {
 
 
 
+pub struct Conversation<'a> {
+    pub name: &'a str,
+    pub dialogues: HashMap<&'a str, Dialogue>,
 
+}
 
 
 
