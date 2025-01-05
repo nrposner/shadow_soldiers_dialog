@@ -419,7 +419,7 @@
       {
         "skill": "gizmo",
         "target": 12,
-        "success_text": "It's in bad shape, boss. The varnish is falling off the face needs a solid wipe down, and I don't see a notice of last maintencance *anywhere*.",
+        "success_text": "It's in bad shape, boss. The varnish is falling off the face needs a solid wipe down, and I don't see a notice of last maintenance *anywhere*.",
         "failure_text": "",
         "speaker": ""
       }
