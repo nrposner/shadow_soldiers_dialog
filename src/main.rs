@@ -50,9 +50,9 @@ impl Default for DialogueApp {
                 robot_mod: 0,
                 dossier_mod: 0,
                 delusion_mod: 0,
-                arts2_mod: 0,
-                arts3_mod: 0,
-                arts4_mod: 0,
+                lens_mod: 0,
+                opera_mod: 0,
+                transcendence_mod: 0,
                 gunsmoke_mod: 0,
                 prohibition_mod: 0,
                 gizmo_mod: 0,
@@ -134,9 +134,9 @@ fn _handle_challenge(player: &Player, option: &DialogueOption) -> bool {
                 "robot" => player.robot(),
                 "dossier" => player.dossier(),
                 "delusion" => player.delusion(),
-                "arts2" => player.arts2(),
-                "arts3" => player.arts3(),
-                "arts4" => player.arts4(),
+                "lens" => player.lens(),
+                "opera" => player.opera(),
+                "transcendence" => player.transcendence(),
                 "gunsmoke" => player.gunsmoke(),
                 "prohibition" => player.prohibition(),
                 "gizmo" => player.gizmo(),
@@ -186,9 +186,9 @@ struct Player {
     robot_mod: i32,
     dossier_mod: i32,
     delusion_mod: i32,
-    arts2_mod: i32,
-    arts3_mod: i32,
-    arts4_mod: i32,
+    lens_mod: i32,
+    opera_mod: i32,
+    transcendence_mod: i32,
     gunsmoke_mod: i32,
     prohibition_mod: i32,
     gizmo_mod: i32,
@@ -238,16 +238,16 @@ impl Player {
         self.arts + self.delusion_mod
     }
 
-    fn arts2(&self) -> i32 {
-        self.arts + self.arts2_mod
+    fn lens(&self) -> i32 {
+        self.arts + self.lens_mod
     }
 
-    fn arts3(&self) -> i32 {
-        self.arts + self.arts3_mod
+    fn opera(&self) -> i32 {
+        self.arts + self.opera_mod
     }
 
-    fn arts4(&self) -> i32 {
-        self.arts + self.arts4_mod
+    fn transcendence(&self) -> i32 {
+        self.arts + self.transcendence_mod
     }
 
     fn gunsmoke(&self) -> i32 {
@@ -308,9 +308,9 @@ impl Default for Player {
         robot_mod: 0,
         dossier_mod: 0,
         delusion_mod: 0,
-        arts2_mod: 0,
-        arts3_mod: 0,
-        arts4_mod: 0,
+        lens_mod: 0,
+        opera_mod: 0,
+        transcendence_mod: 0,
         gunsmoke_mod: 0,
         prohibition_mod: 0,
         gizmo_mod: 0,

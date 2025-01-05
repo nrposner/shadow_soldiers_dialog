@@ -1,25 +1,27 @@
 {
-  "Dialogue_12": {
-    "speaker": "Hello1",
-    "intro": "ya",
-    "options": [],
+  "Dialogue_8": {
+    "speaker": "Playtestter",
+    "intro": "Okay, does this thing actually work?",
+    "options": [
+      {
+        "description": "TestYes",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "Yeah, looks like it works pretty well. ",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
     "passive_check": [],
-    "xp_reward": null,
+    "xp_reward": 20,
     "is_hidden": false,
-    "time": null
+    "time": 5
   },
   "Dialogue_22": {
     "speaker": "New Speaker98",
     "intro": "budfiuvf",
-    "options": [],
-    "passive_check": [],
-    "xp_reward": null,
-    "is_hidden": false,
-    "time": null
-  },
-  "Dialogue_3": {
-    "speaker": "New Speaker2",
-    "intro": "New Intro Text3",
     "options": [],
     "passive_check": [],
     "xp_reward": null,
@@ -74,6 +76,15 @@
     "is_hidden": false,
     "time": null
   },
+  "Dialogue_12": {
+    "speaker": "Hello1",
+    "intro": "ya",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
   "Test_Dialogue_Clocky": {
     "speaker": "bla",
     "intro": "Hello, my name is clocky",
@@ -97,6 +108,15 @@
   "Dialogue_1": {
     "speaker": "Hello1",
     "intro": "ya",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "Dialogue_3": {
+    "speaker": "New Speaker2",
+    "intro": "New Intro Text3",
     "options": [],
     "passive_check": [],
     "xp_reward": null,
