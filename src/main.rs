@@ -1,12 +1,9 @@
 use eframe::{egui, Frame};
 use egui::Id;
 use rand::Rng;
-use std::collections::HashMap;
-use std::collections::HashSet;
+use std::collections::{HashSet, HashMap};
 
 use shadow_soldiers_dialog::*;
-//mod dialogues;
-//use dialogues::{create_locations, Location, Dialogue, DialogueOption, PassiveCheck};
 mod isometric;
 use isometric::{IsometricSpace};
 
@@ -380,92 +377,6 @@ impl eframe::App for DialogueEditorApp {
 }
 
 
-
-
-// impl eframe::App for DialogueEditorApp {
-//     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
-//         egui::CentralPanel::default().show(ctx, |ui| {
-//             ui.heading("Dialogue Editor");
-
-//             ui.horizontal(|ui| {
-//                 if ui.button("New Dialogue").clicked() {
-//                     self.create_dialogue();
-//                 }
-//                 if ui.button("Save").clicked() {
-//                     save_to_file(&self.dialogues, "src/dialogues.json".to_string());
-//                 }
-//             });
-
-//             self.display_dialogue_list(ui);
-
-//             // Extract the mutable reference to the selected dialogue
-//             if let Some(selected_id) = &self.selected_dialogue {
-//                 if let Some(dialogue) = self.dialogues.get_mut(selected_id) {
-//                     // Pass the mutable reference to a standalone function
-//                     edit_dialogue(ui, selected_id, dialogue);
-//                 }
-//             }
-//         });
-//     }
-// }
-
-// fn edit_dialogue(ui: &mut egui::Ui, id: &str, dialogue: &mut Dialogue) {
-//     ui.heading(format!("Editing: {}", id));
-
-//     // Edit Speaker
-//     ui.horizontal(|ui| {
-//         ui.label("Speaker:");
-//         ui.text_edit_singleline(&mut dialogue.speaker);
-//     });
-
-//     // Edit Intro Text
-//     ui.horizontal(|ui| {
-//         ui.label("Intro:");
-//         ui.text_edit_multiline(&mut dialogue.intro);
-//     });
-
-//     // Display and Edit Dialogue Options
-//     let mut to_delete = None;
-//     ui.label("Options:");
-//     for (index, option) in dialogue.options.iter_mut().enumerate() {
-//         ui.horizontal(|ui| {
-//             ui.text_edit_singleline(&mut option.description);
-//             if ui.button("Delete").clicked() {
-//                 to_delete = Some(index);
-//             }
-//         });
-//     }
-//     if let Some(index) = to_delete {
-//         dialogue.options.remove(index);
-//     }
-
-//     if ui.button("Add Option").clicked() {
-//         dialogue.options.push(DialogueOption::default());
-//     }
-
-//     // Display and Edit Passive Checks
-//     ui.label("Passive Checks:");
-//     for check in &mut dialogue.passive_check {
-//         ui.horizontal(|ui| {
-//             ui.label("Skill:");
-//             ui.text_edit_singleline(&mut check.skill);
-//             ui.label("Target:");
-//             ui.add(egui::DragValue::new(&mut check.target));
-//         });
-//     }
-//     if ui.button("Add Passive Check").clicked() {
-//         dialogue.passive_check.push(PassiveCheck {
-//             skill: "New Skill".to_string(),
-//             target: 1,
-//             success_text: Some("Success Text".to_string()),
-//             failure_text: None,
-//             speaker: None,
-//         });
-//     }
-// }
-
-
-
 impl DialogueEditorApp {
     fn create_dialogue(&mut self) {
         let id = create_dialogue(&mut self.dialogues); // Use the function from lib.rs
@@ -529,47 +440,4 @@ fn main() -> Result<(), eframe::Error> {
     )
 }
 
-
-
-// fn main() {
-//     // Initialize an empty HashMap to hold dialogues
-//     let mut dialogues: HashMap<String, Dialogue> = HashMap::new();
-
-//     // Optional: Load existing dialogues from a file at startup
-//     let file_path = "src/dialogues.json";
-//     let loaded_dialogues = load_dialogues(file_path);
-
-//     // Merge loaded dialogues into the editor
-//     dialogues.extend(loaded_dialogues);
-
-//     // Run the editor menu
-//     main_menu(&mut dialogues);
-
-//     // Automatically save dialogues before exiting
-//     save_to_file(&dialogues, file_path.to_string());
-// }
-
-// fn main() {
-//     // Initialize an empty HashMap to hold dialogues
-//     let mut dialogues: HashMap<String, Dialogue> = HashMap::new();
-
-//     // Optional: Load existing dialogues from a file at startup
-//     let file_path = "src/dialogues.json";
-//     let loaded_dialogues = load_dialogues(file_path);
-
-//     // Merge loaded dialogues into the editor
-//     dialogues.extend(loaded_dialogues);
-
-//     // Run the editor menu
-//     main_menu(&mut dialogues);
-
-//     // Optional: Automatically save dialogues before exiting
-//     let save_path = "src/dialogues.json".to_string();
-//     if let Err(e) = save_to_file(&dialogues, save_path) {
-//         eprintln!("Failed to save dialogues: {}", e);
-//     } else {
-//         println!("Dialogues saved successfully to '{}'.", save_path);
-//     }
-    
-// }
 
