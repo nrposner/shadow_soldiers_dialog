@@ -335,7 +335,7 @@ impl Default for DialogueEditorApp {
         //Load in dialogues from the dedicated file
         //In the future, plan to transform this to load dialogues from room-specific files
 
-        let (dialogues, temp_id) = initialize_dialogues("src/dialogues.json").unwrap();
+        let (dialogues, temp_id) = initialize_dialogues("src/dialogues/clock.json").unwrap();
             
         Self {
             dialogues,
@@ -357,7 +357,7 @@ impl eframe::App for DialogueEditorApp {
                     self.create_dialogue();
                 }
                 if ui.button("Save").clicked() {
-                    save_to_file(&self.dialogues, "src/dialogues.json".to_string());
+                    save_to_file(&self.dialogues, "src/dialogues/clock.json".to_string());
                 }
             });
 

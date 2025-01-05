@@ -1,0 +1,698 @@
+{
+  "ClockDecline": {
+    "speaker": "Grandfather Clock",
+    "intro": "No.",
+    "options": [
+      {
+        "description": "Well, alright then.",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "Start",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Fuck you, and your little cuckoo too.",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "Start",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockRepression": {
+    "speaker": "Grandfather Clock",
+    "intro": "Something here is definitely repressed, but it's not memories. You're no amnesiac, as much as you might like to be, at times.",
+    "options": [
+      {
+        "description": "Take a look at the clock again.",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockBroken",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [
+      {
+        "skill": "gunsmoke",
+        "target": 8,
+        "success_text": "Okay bud, let's take a step back into the real world. Let's mess around with some machinery, we like doing that. Takes our mind off things. ",
+        "failure_text": "",
+        "speaker": "Gunsmoke"
+      }
+    ],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockJustBroken": {
+    "speaker": "New Speaker",
+    "intro": "New Intro Text",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockApparatchik": {
+    "speaker": "New Speaker",
+    "intro": "New Intro Text",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockPerversion": {
+    "speaker": "Grandfather Clock",
+    "intro": "It's an extremely common and not at all shameful perversion, characteristic of the Republic's struggles against the insidious American *Central Intelligence Agency*.",
+    "options": [
+      {
+        "description": "Let's go with that. ",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockCIA",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "No, you can't possibly be serious. How does that make any sense?",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockExplanation",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockBroken": {
+    "speaker": "Grandfather Clock",
+    "intro": "Its two hands, the shorter ending in a stylized sun and the longer in a crescent moon, are stuck at 5 hours and 37 minutes.",
+    "options": [
+      {
+        "description": "What a waste. Surely I could fix it up?",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockRecommends",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Five-thirty-seven in the morning or night?",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockFutile",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Stand proud, fallen soldier of the Republic! (Salute the clock)",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockSalute",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Goodbye, mysterious clock.",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "Start",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockSalute": {
+    "speaker": "New Speaker",
+    "intro": "New Intro Text",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockSuggestive": {
+    "speaker": "Grandfather Clock",
+    "intro": "I'm very, *very* sure I don't.",
+    "options": [
+      {
+        "description": "Like it's something... sexual.",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockSexual",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Fine, I'll leave off. What was that about a sun and moon again?",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockBroken",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockTrauma": {
+    "speaker": "Grandfather Clock",
+    "intro": "It's a trauma response.",
+    "options": [
+      {
+        "description": "What, seriously?",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockTrauma",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Did I have to do... that... during The War? Do I have repressed memories I need to process?",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockRepression",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockPhrasing": {
+    "speaker": "Grandfather Clock",
+    "intro": "Like what?",
+    "options": [
+      {
+        "description": "Like I'm doing something creepy here! It's just a broken clock!",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockJustBroken",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Like this is some *religious* thing. That's not what I'm about.",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockReligious",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Like... you know.",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockSuggestive",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "You know what, never mind.",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockBroken",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "You know what, forget it. I'll get *into its guts*. What's in there.",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockInterior",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockExplanation": {
+    "speaker": "Grandfather Clock",
+    "intro": "Simple. Communism is built upon love for your comrade. Not bourgeois romantic love, or feudal familial love, or reactionary love of country, but the superior and pure love of the worker standing by your side. The CIA's modus operandi is to undermine the foundation of communism by turning comrades against one another. This objective, to our great misfortune, has been largely successful. Everywhere now, you can see signs of bourgeois romantic love displacing true communist camaraderie, and bringing with it a perverse focus on sex. But this train of thought, by re-associating the apparently sexual elements with the suffering of one's comrades, reinforces the revolutionary spirit and wards off capitalist infiltration. The only reason you recoil from this image, instead of embracing it, is because you yet possess a remnant of the bourgeois ego, nurtured by CIA propaganda, to which laying down all and destroying all boundaries for the sake of your comrades is unacceptable. ",
+    "options": [
+      {
+        "description": "You know, somehow that fails to make me okay with all this. ",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockBroken",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Ah, of course, it's so obvious in retrospect. Let's get inside of you, comrade!",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockInterior",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "If this is what communism has come to, shave my mustache and call me Milton Freidman. (End conversation in disgust)",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "Start",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockFutile": {
+    "speaker": "Grandfather Clock",
+    "intro": "How could you possibly tell? It's a twelve-hour clock.",
+    "options": [
+      {
+        "description": "Engage your brain. There has to be a way to figure it out. (Rocketry 12)",
+        "challenge_attribute": "rocketry",
+        "challenge_number": 12,
+        "success_dialogue": "ClockRocketry",
+        "failure_dialogue": "ClockNotRocketry",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Bureaucracy has the answer. It always does. (Apparatchik 10)",
+        "challenge_attribute": "apparatchik",
+        "challenge_number": 10,
+        "success_dialogue": "ClockApparatchik",
+        "failure_dialogue": "ClockNotApparatchik",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "The subject is resisting the will of the people. You know what to do (Gunsmoke 8)",
+        "challenge_attribute": "gunsmoke",
+        "challenge_number": 8,
+        "success_dialogue": "ClockGunsmoke",
+        "failure_dialogue": "ClockNotGunsmoke",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockRocketry": {
+    "speaker": "Rocketry",
+    "intro": "Logically speaking, there should be no way. This modulo-twelve engine functions identically day and night.",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockInspect": {
+    "speaker": "Grandfather Clock",
+    "intro": "A round, pale face crossed by dark lines stares down at you. It has seen much, and forgotten more.",
+    "options": [
+      {
+        "description": "What stories could you tell me, old man? (Delusion 10)",
+        "challenge_attribute": "delusion",
+        "challenge_number": 10,
+        "success_dialogue": "ClockHungry",
+        "failure_dialogue": "ClockMocking",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Check the time",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockBroken",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Goodbye, fair clock. (End Conversation)",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "Start",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [
+      {
+        "skill": "robot",
+        "target": 10,
+        "success_text": "You know its kind. The unrelenting metronome to which you dance.",
+        "failure_text": "",
+        "speaker": "Robot"
+      },
+      {
+        "skill": "gizmo",
+        "target": 12,
+        "success_text": "It's in bad shape, boss. The varnish is falling off the face needs a solid wipe down, and I don't see a notice of last maintencance *anywhere*.",
+        "failure_text": "",
+        "speaker": ""
+      }
+    ],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockNotRocketry": {
+    "speaker": "New Speaker",
+    "intro": "New Intro Text",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockSexual": {
+    "speaker": "Grandfather Clock",
+    "intro": "Wow. Just wow. Just what about sticking your hands *wrist deep* in your comrade's bloody, pulsating wound seems *sexual* to you?",
+    "options": [
+      {
+        "description": "It's not you, it's everyone. Come up with a theoretical justification for your objectively weird thoughts. (Pathology 8)",
+        "challenge_attribute": "pathology",
+        "challenge_number": 8,
+        "success_dialogue": "ClockPerversion",
+        "failure_dialogue": "ClockTrauma",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "There it is again! You're putting this weird *emphasis* on things.",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockEmphasis",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Actually, you know what? This isn't a sexual thing. It's a religious thing.",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockSexualReligion",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockEmphasis": {
+    "speaker": "New Speaker",
+    "intro": "New Intro Text",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockRecommends": {
+    "speaker": "Grandfather Clock",
+    "intro": "You'd have to get into this thing's guts. Are you mentally and *spiritually* prepared to mess around with this poor, fallen soldier's insides? On the off chance you can restore life to the dead?",
+    "options": [
+      {
+        "description": "On second thought, let's not do that.",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockBroken",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Come on, why did you have to phrase it that way?",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockPhrasing",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Let's do this.",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockInterior",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockReligious": {
+    "speaker": "New Speaker",
+    "intro": "New Intro Text",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockGear": {
+    "speaker": "Grandfather Clock",
+    "intro": "That is the price. Seek out my heart, if you wish to hear more.",
+    "options": [
+      {
+        "description": "...",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "...",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "...",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "...",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [
+      {
+        "skill": "gizmo",
+        "target": 8,
+        "success_text": "A gear, it must be. Check the inside. Let's see what's missing.",
+        "failure_text": "",
+        "speaker": "Gizmo"
+      },
+      {
+        "skill": "delusion",
+        "target": 12,
+        "success_text": "Listen to the clock. It shall show you wonders.",
+        "failure_text": "I was kidding. That wasn't the clock talking to you, it was your own tendency towards hallucinations. Don't listen to me.",
+        "speaker": "Delusion"
+      }
+    ],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockInterior": {
+    "speaker": "New Speaker",
+    "intro": "New Intro Text",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockSexualReligion": {
+    "speaker": "New Speaker",
+    "intro": "New Intro Text",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockHungry": {
+    "speaker": "Grandfather Clock",
+    "intro": "I hunger, my son. Feed me my beating heart, and I shall tell you a wonderful tale indeed.",
+    "options": [
+      {
+        "description": "What the fuck?",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockGear",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Your beating heart? You don't mean...",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockGear",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "I will do no such thing. (End conversation)",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "Start",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockMocking": {
+    "speaker": "Grandfather Clock",
+    "intro": "It seems to talk to you. It asks, 'Why are you talking to a clock, you absolute dolt? You twat. Has my non-sentient existence come to the point that madmen come in off the street and try to engage me in conversation?",
+    "options": [
+      {
+        "description": "Okay, that's just, like, your opinion, man. (End conversation)",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "Start",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      },
+      {
+        "description": "Tell me your secrets!",
+        "challenge_attribute": "",
+        "challenge_number": null,
+        "success_dialogue": "ClockDecline",
+        "failure_dialogue": "",
+        "item_to_pickup": "",
+        "visible_when": "",
+        "flags": null
+      }
+    ],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockNotTrauma": {
+    "speaker": "Grandfather Clock",
+    "intro": "Look, all I know is that whenever something like this happens to you, there's exactly one phrase bouncing around this empty skull, and it's 'trauma response'. Trauma response this, trauma response that. It gets you out of anything.",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockNotApparatchik": {
+    "speaker": "New Speaker",
+    "intro": "New Intro Text",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  },
+  "ClockCIA": {
+    "speaker": "Grandfather Clock",
+    "intro": "No need for an explanation, we're all on the same page. ",
+    "options": [],
+    "passive_check": [],
+    "xp_reward": null,
+    "is_hidden": false,
+    "time": null
+  }
+}
