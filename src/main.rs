@@ -1,5 +1,3 @@
-use eframe::{egui, Frame};
-use egui::Id;
 use rand::Rng;
 use std::collections::{HashSet, HashMap};
 
@@ -7,7 +5,12 @@ use shadow_soldiers_dialog::*;
 mod isometric;
 use isometric::{IsometricSpace};
 
+#[allow(unused_imports)]
+use eframe::{egui, Frame};
+#[allow(unused_imports)]
+use egui::Id;
 
+#[allow(dead_code)]
 enum GameState {
     CharacterCreation,
     InGame,
@@ -15,6 +18,7 @@ enum GameState {
     SkillManagement,
 }
 
+#[allow(dead_code)]
 struct DialogueApp {
     current_text: String,
     player: Player,
@@ -86,7 +90,7 @@ struct Time {
 }
 
 impl Time {
-    fn increase(&mut self, added_minutes: i32) {
+    fn _increase(&mut self, added_minutes: i32) {
         let days_increased: i32 = added_minutes/1440;
 
         let hours_increased: i32 = (added_minutes - 1440*days_increased)/60;
@@ -111,9 +115,13 @@ impl Time {
     }
 }
 
+fn _roll_dice() -> (i32, i32) {
+    let mut rng = rand::thread_rng();
+    (rng.gen_range(1..=6), rng.gen_range(1..=6))
+}
 
 // Challenge logic
-fn handle_challenge(player: &Player, option: &DialogueOption) -> bool {
+fn _handle_challenge(player: &Player, option: &DialogueOption) -> bool {
     if let Some(challenge_attribute) = &option.challenge_attribute {
         if let Some(challenge_number) = option.challenge_number {
             let attribute_value = match challenge_attribute.as_str() {
@@ -136,7 +144,7 @@ fn handle_challenge(player: &Player, option: &DialogueOption) -> bool {
                 _ => 0,
             };
 
-            let (die1, die2) = roll_dice();
+            let (die1, die2) = _roll_dice();
             let roll_sum = die1 + die2;
 
             println!("You rolled: {} + {} = {}", die1, die2, roll_sum);
@@ -162,11 +170,8 @@ fn handle_challenge(player: &Player, option: &DialogueOption) -> bool {
     false
 }
 
-fn roll_dice() -> (i32, i32) {
-    let mut rng = rand::thread_rng();
-    (rng.gen_range(1..=6), rng.gen_range(1..=6))
-}
 
+#[allow(dead_code)]
 struct Player {
     tech: i32,
     arts: i32,
@@ -195,6 +200,7 @@ struct Player {
     flags: HashSet<String>,
 }
 
+#[allow(dead_code)]
 impl Player {
     fn checkmate(&self) -> i32 {
         self.tech + self.checkmate_mod
@@ -357,7 +363,7 @@ impl eframe::App for DialogueEditorApp {
 
             // Use ScrollArea to wrap the rest of the content
             egui::ScrollArea::vertical()
-                .id_source("dialogue_scroll_area") // Provide a unique identifier for the scroll area
+                .id_salt("dialogue_scroll_area") // Provide a unique identifier for the scroll area
                 .show(ui, |ui| {
                     // Display list of dialogues
                     self.display_dialogue_list(ui);
@@ -384,7 +390,7 @@ impl DialogueEditorApp {
         self.selected_dialogue = Some(id);
     }
 
-    fn update_dialogues(&mut self, ui: &mut egui::Ui) {
+    fn _update_dialogues(&mut self, ui: &mut egui::Ui) {
         if let Some(selected_id) = &self.selected_dialogue {
             if let Some(dialogue) = self.dialogues.remove(selected_id) {
                 let mut dialogue = dialogue;

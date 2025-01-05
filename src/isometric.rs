@@ -1,5 +1,6 @@
 // I have commented out a couple of functions bc I'm not really testing the navigation gui now and they were throwing errors
 
+#[allow(dead_code)]
 pub struct IsometricSpace {
     pub grid_size: (usize, usize),
     pub tile_size: (f32, f32),  // Tile size for the isometric grid
@@ -20,6 +21,7 @@ impl Default for IsometricSpace {
     }
 }
 
+#[allow(dead_code)]
 impl IsometricSpace {
 
     pub fn start_player_move(&mut self, target_position: (usize, usize)) {

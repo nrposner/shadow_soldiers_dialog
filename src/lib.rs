@@ -4,7 +4,7 @@ use std::io;
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 use std::fs;
-use dialoguer::{Input, Select, Confirm};
+//use dialoguer::{Input, Select, Confirm};
 
 
 pub fn load_dialogues(file_path: &str) -> HashMap<String, Dialogue> {
@@ -232,7 +232,7 @@ pub fn edit_dialogue(ui: &mut egui::Ui, current_id: &str, dialogue: &mut Dialogu
 
 
 
-fn view_dialogues(dialogues: &HashMap<String, Dialogue>) {
+fn _view_dialogues(dialogues: &HashMap<String, Dialogue>) {
     for (id, dialogue) in dialogues {
         println!("ID: {}\nSpeaker: {}\nIntro: {}\n", id, dialogue.speaker, dialogue.intro);
     }
@@ -411,7 +411,7 @@ impl Conversation {
 
 
 pub fn create_locations() -> HashMap<String, Location> {
-    let mut locations = HashMap::new();
+    let mut _locations = HashMap::new();
 
     // Define sample dialogues for the Vestibule
     let mut vestibule_dialogues = HashMap::new();
@@ -442,5 +442,5 @@ pub fn create_locations() -> HashMap<String, Location> {
         },
     );
 
-    locations
+    _locations
 }
