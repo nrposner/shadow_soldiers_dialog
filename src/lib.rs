@@ -1,5 +1,6 @@
 // Let's create an interface to programatically make valid dialogues, and perhaps even visualize their flow in a conversation
 
+use std::io;
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
 use std::fs;
@@ -288,6 +289,21 @@ pub fn save_to_file(dialogues: &HashMap<String, Dialogue>, file_path: String) {
     println!("Dialogues saved successfully to {}", file_path);
 }
 
+pub fn initialize_dialogues(file_path: &str) -> Result<(HashMap<String, Dialogue>, String), io::Error>{
+    // Attempt to load dialogues from the file
+    let dialogues = if let Ok(content) = std::fs::read_to_string(file_path) {
+        serde_json::from_str::<HashMap<String, Dialogue>>(&content).unwrap_or_default()
+    } else {
+        HashMap::new() // Start with an empty HashMap if the file doesn't exist
+    };
+
+    Ok(
+        (
+        dialogues,
+        String::new()
+        )
+    )
+}
 
 // pub fn save_to_file(dialogues: &HashMap<String, Dialogue>, file_path: String) {
 //     // Load existing dialogues
@@ -439,7 +455,6 @@ impl Conversation {
 
 }
 //create defaults and use them, reduce space taken up
-
 
 
 

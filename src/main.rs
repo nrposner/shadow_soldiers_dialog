@@ -327,21 +327,17 @@ struct DialogueEditorApp {
     temp_id: String,                     // Temporary field for editing dialogue ID
 }
 
-
 impl Default for DialogueEditorApp {
     fn default() -> Self {
-        // Attempt to load dialogues from the file
-        let file_path = "src/dialogues.json";
-        let dialogues = if let Ok(content) = std::fs::read_to_string(file_path) {
-            serde_json::from_str::<HashMap<String, Dialogue>>(&content).unwrap_or_default()
-        } else {
-            HashMap::new() // Start with an empty HashMap if the file doesn't exist
-        };
+        //Load in dialogues from the dedicated file
+        //In the future, plan to transform this to load dialogues from room-specific files
 
+        let (dialogues, temp_id) = initialize_dialogues("src/dialogues.json").unwrap();
+            
         Self {
             dialogues,
             selected_dialogue: None,
-            temp_id: String::new(),
+            temp_id
         }
     }
 }
