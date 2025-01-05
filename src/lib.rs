@@ -266,14 +266,14 @@ pub fn initialize_dialogues(file_path: &str) -> Result<(HashMap<String, Dialogue
 
 
 
-#[derive(Clone)]
+#[derive(Clone, PartialEq)]
 pub struct Conversation {
     pub name: String,
     pub dialogues: HashMap<String, Dialogue>,
 
 }
 
-#[derive(Clone)]
+#[derive(Clone, PartialEq)]
 pub struct Location {
     pub name: String,
     pub dialogues: HashMap<String, Dialogue>,
@@ -294,7 +294,7 @@ pub struct DialogueOption {
 
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
 pub struct Dialogue {
     pub speaker: String,
     pub intro: String,
@@ -305,7 +305,7 @@ pub struct Dialogue {
     pub time: Option<i32>,
 }
 
-#[derive(Serialize, Deserialize, Clone, Debug)]
+#[derive(Serialize, Deserialize, Clone, Debug, PartialEq)]
 pub struct PassiveCheck {
     pub skill: String,          // The player's skill to check
     pub target: i32,            // The number to check against
@@ -411,11 +411,12 @@ impl Conversation {
 
 
 pub fn create_locations() -> HashMap<String, Location> {
-    let mut _locations = HashMap::new();
+    let mut locations = HashMap::new();
 
-    // Define sample dialogues for the Vestibule
-    let mut vestibule_dialogues = HashMap::new();
-    vestibule_dialogues.insert(
+
+    let mut vestibule_location = Location::new("Vestibule".to_string());
+    
+    vestibule_location.add_dialogue(
         "Start".to_string(),
         Dialogue {
             speaker: "".to_string(),
@@ -442,5 +443,7 @@ pub fn create_locations() -> HashMap<String, Location> {
         },
     );
 
-    _locations
+    locations.insert("Vestibule".to_string(), vestibule_location);
+    
+    locations
 }
