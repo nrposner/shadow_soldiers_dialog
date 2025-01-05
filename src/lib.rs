@@ -276,7 +276,6 @@ pub struct Conversation {
 #[derive(Clone, PartialEq)]
 pub struct Location {
     pub name: String,
-    pub dialogues: HashMap<String, Dialogue>,
     pub conversations: HashMap<String, Conversation>,
     pub exits: Vec<String>, // Names of other locations you can move to
 }
@@ -362,14 +361,9 @@ impl Location {
     pub fn new(name: String) -> Self {
         Self {
             name,
-            dialogues: HashMap::new(),
             conversations: HashMap::new(),
             exits: vec![],
         }
-    }
-
-    pub fn add_dialogue(&mut self, id: String, dialogue: Dialogue) {
-        self.dialogues.insert(id, dialogue);
     }
 
     pub fn add_conversation(&mut self, id: String, conversation: Conversation) {
@@ -415,8 +409,12 @@ pub fn create_locations() -> HashMap<String, Location> {
 
 
     let mut vestibule_location = Location::new("Vestibule".to_string());
-    
-    vestibule_location.add_dialogue(
+
+    //conversation is name, and dialogue
+
+    let mut intro_conversation = Conversation::new("Intro".to_string());
+
+    intro_conversation.add_dialogue(
         "Start".to_string(),
         Dialogue {
             speaker: "".to_string(),
@@ -442,6 +440,8 @@ pub fn create_locations() -> HashMap<String, Location> {
             ..Default::default()
         },
     );
+
+    vestibule_location.add_conversation("Intro".to_string(), intro_conversation);
 
     locations.insert("Vestibule".to_string(), vestibule_location);
     
