@@ -431,6 +431,11 @@ impl Conversation {
             dialogues: HashMap::new(),
         }
     }
+
+    pub fn add_dialogue(&mut self, id: String, dialogue: Dialogue) {
+        self.dialogues.insert(id, dialogue);
+    }
+
 }
 //create defaults and use them, reduce space taken up
 
