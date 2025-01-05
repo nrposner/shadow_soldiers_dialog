@@ -311,9 +311,9 @@ pub fn save_to_file(dialogues: &HashMap<String, Dialogue>, file_path: String) {
 
 
 
-pub struct Conversation<'a> {
-    pub name: &'a str,
-    pub dialogues: HashMap<&'a str, Dialogue>,
+pub struct Conversation {
+    pub name: String,
+    pub dialogues: HashMap<String, Dialogue>,
 
 }
 
@@ -424,7 +424,14 @@ impl Location {
     }
 }
 
-
+impl Conversation {
+    pub fn new(name: String) -> Self {
+        Self {
+            name, 
+            dialogues: HashMap::new(),
+        }
+    }
+}
 //create defaults and use them, reduce space taken up
 
 
