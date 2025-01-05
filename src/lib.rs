@@ -66,27 +66,6 @@ fn validate_and_fill_defaults(dialogue: &mut Dialogue) {
     });
 }
 
-
-
-// pub fn main_menu(dialogues: &mut HashMap<String, Dialogue>) {
-//     loop {
-//         let save_path = "src/dialogues.json".to_string();
-//         println!("=== Dialogue Editor ===");
-//         let options = vec!["Create Dialogue", "Edit Dialogue", "View Dialogues", "Save to File", "Exit"];
-//         let selection = Select::new().items(&options).default(0).interact().unwrap();
-
-//         match selection {
-//             0 => create_dialogue(dialogues),
-//             1 => edit_dialogue(dialogues),
-//             2 => view_dialogues(dialogues),
-//             3 => save_to_file(dialogues, save_path),
-//             4 => break,
-//             _ => println!("Invalid selection"),
-//         }
-//     }
-// }
-
-
 pub fn create_dialogue(dialogues: &mut HashMap<String, Dialogue>) -> String {
     let id = format!("Dialogue_{}", dialogues.len() + 1);
     dialogues.insert(
@@ -104,26 +83,6 @@ pub fn create_dialogue(dialogues: &mut HashMap<String, Dialogue>) -> String {
     id // Return the new dialogue ID
 }
 
-
-
-// fn create_dialogue(dialogues: &mut HashMap<String, Dialogue>) {
-//     let id: String = Input::new().with_prompt("Enter Dialogue ID").interact().unwrap();
-//     let speaker: String = Input::new().with_prompt("Enter Speaker").interact().unwrap();
-//     let intro: String = Input::new().with_prompt("Enter Intro Text").interact().unwrap();
-
-//     let new_dialogue = Dialogue {
-//         speaker,
-//         intro,
-//         options: vec![],
-//         passive_check: vec![],
-//         xp_reward: None,
-//         is_hidden: false,
-//         time: None,
-//     };
-
-//     dialogues.insert(id, new_dialogue);
-//     println!("Dialogue created successfully.");
-// }
 
 pub fn edit_dialogue(ui: &mut egui::Ui, current_id: &str, dialogue: &mut Dialogue, temp_id: &mut String) -> Option<String> {
     ui.heading(format!("Editing Dialogue: {}", current_id));
@@ -304,25 +263,6 @@ pub fn initialize_dialogues(file_path: &str) -> Result<(HashMap<String, Dialogue
         )
     )
 }
-
-// pub fn save_to_file(dialogues: &HashMap<String, Dialogue>, file_path: String) {
-//     // Load existing dialogues
-//     let mut existing_dialogues = if let Ok(content) = std::fs::read_to_string(&file_path) {
-//         serde_json::from_str::<HashMap<String, Dialogue>>(&content).unwrap_or_default()
-//     } else {
-//         HashMap::new() // Start with an empty HashMap if the file doesn't exist
-//     };
-
-//     // Merge the current dialogues into the existing ones
-//     existing_dialogues.extend(dialogues.clone());
-
-//     // Serialize the merged dialogues
-//     let json = serde_json::to_string_pretty(&existing_dialogues).expect("Failed to serialize dialogues");
-//     std::fs::write(&file_path, json).expect("Failed to write to file");
-
-//     println!("Dialogues saved successfully to {}", file_path);
-// }
-
 
 
 
