@@ -446,4 +446,11 @@ fn main() -> Result<(), eframe::Error> {
     )
 }
 
+// if I wanted to be able to specify the dialogue file to load and modify, it would make the most sense to add a -- command after cargo run in which I could specify the name, likely not the full filepath. Then I'd have to preserve that and pass it into the update method somehow
+
+// while I'm at it, ask ChatGPT what the hell that line above does, the |_cc|. Is that arbitrary? Is there a reason we call it that? Nothing is actually getting piped in, we're just calling the default. Is there perhaps a need for some filler in the closure?
+
+// look more into the actual functioning and syntax of Box and eframe more generally, I'd like to be able to do that myself going forward
+
+// going forward, I plan to put the isometric aspects on hold, instead focus on making this a functional text game, and then enabling images, more visual novel style
 
