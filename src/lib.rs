@@ -1,5 +1,7 @@
 // Let's create an interface to programatically make valid dialogues, and perhaps even visualize their flow in a conversation
 
+// I'm trying to edit this in neovim
+
 use std::io;
 use std::collections::HashMap;
 use serde::{Deserialize, Serialize};
