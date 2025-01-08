@@ -1,9 +1,9 @@
 use rand::Rng;
-use std::collections::{HashSet, HashMap};
+use std::collections::{HashMap, HashSet};
 
 use shadow_soldiers_dialog::*;
 mod isometric;
-use isometric::{IsometricSpace};
+use isometric::IsometricSpace;
 
 #[allow(unused_imports)]
 use eframe::{egui, Frame};
@@ -27,13 +27,12 @@ struct DialogueApp {
     current_dialogue_id: Option<String>,  // Current dialogue ID, or None if not in a dialogue
     state: GameState,
     previous_dialogue_id: Option<String>,
-    current_time: Time, 
-    isometric_space: IsometricSpace, 
+    current_time: Time,
+    isometric_space: IsometricSpace,
 }
 
 impl Default for DialogueApp {
     fn default() -> Self {
-
         Self {
             current_text: "Welcome!".to_string(),
             player: Player {
@@ -66,7 +65,7 @@ impl Default for DialogueApp {
             locations: create_locations(),
             current_location_id: "Vestibule".to_string(), // Start in the Vestibule
             current_dialogue_id: Some("Start".to_string()), // Start with the "Start" dialogue
-            state: GameState::CharacterCreation, 
+            state: GameState::CharacterCreation,
             previous_dialogue_id: None,
             current_time: Time {
                 day: 1,
@@ -75,14 +74,12 @@ impl Default for DialogueApp {
             },
             isometric_space: IsometricSpace {
                 ..Default::default()
-            }
+            },
         }
     }
 }
 
-
-#[derive(Debug)]
-#[derive(PartialEq)]
+#[derive(Debug, PartialEq)]
 struct Time {
     day: i32,
     hour: i32,
@@ -91,27 +88,26 @@ struct Time {
 
 impl Time {
     fn _increase(&mut self, added_minutes: i32) {
-        let days_increased: i32 = added_minutes/1440;
+        let days_increased: i32 = added_minutes / 1440;
 
-        let hours_increased: i32 = (added_minutes - 1440*days_increased)/60;
+        let hours_increased: i32 = (added_minutes - 1440 * days_increased) / 60;
 
-        let minutes_increased: i32 = (added_minutes - 1440*days_increased) - (60*hours_increased);
+        let minutes_increased: i32 =
+            (added_minutes - 1440 * days_increased) - (60 * hours_increased);
 
         self.day += days_increased;
         self.hour += hours_increased;
         self.minute += minutes_increased;
 
         if self.minute > 59 {
-            self.minute = self.minute%60;
+            self.minute = self.minute % 60;
             self.hour += 1;
-        } 
+        }
 
         if self.hour > 23 {
             self.hour = 0;
-            self.day +=1;
+            self.day += 1;
         };
-
-
     }
 }
 
@@ -159,17 +155,22 @@ fn _handle_challenge(player: &Player, option: &DialogueOption) -> bool {
 
             let total = roll_sum + attribute_value;
             if total >= challenge_number {
-                println!("Success! You needed {}, and you got {}.", challenge_number, total);
+                println!(
+                    "Success! You needed {}, and you got {}.",
+                    challenge_number, total
+                );
                 return true;
             } else {
-                println!("Failure. You needed {}, but you got {}.", challenge_number, total);
+                println!(
+                    "Failure. You needed {}, but you got {}.",
+                    challenge_number, total
+                );
                 return false;
             }
         }
     }
     false
 }
-
 
 #[allow(dead_code)]
 struct Player {
@@ -275,8 +276,14 @@ impl Player {
     }
 
     fn is_valid(&self) -> bool {
-        self.tech >= 1 && self.arts >= 1 && self.bur >= 1 && self.und >= 1
-            && self.tech <= 6 && self.arts <= 6 && self.bur <= 6 && self.und <= 6
+        self.tech >= 1
+            && self.arts >= 1
+            && self.bur >= 1
+            && self.und >= 1
+            && self.tech <= 6
+            && self.arts <= 6
+            && self.bur <= 6
+            && self.und <= 6
             && self.total_points() == 12
     }
 
@@ -287,7 +294,10 @@ impl Player {
         while self.xp >= 100 {
             self.xp -= 100; // Reset XP and preserve the overflow
             self.skill_points += 1; // Award skill points
-            println!("You gained a skill point! You now have {} skill points.", self.skill_points);
+            println!(
+                "You gained a skill point! You now have {} skill points.",
+                self.skill_points
+            );
         }
     }
 }
@@ -295,39 +305,39 @@ impl Player {
 impl Default for Player {
     fn default() -> Self {
         Self {
-        tech: 1,
-        arts: 1,
-        bur: 1, //short for bureaucracy
-        und: 1, //short for underworld
-        checkmate_mod: 0,
-        rocketry_mod: 0,
-        pathology_mod: 0,
-        civic_engineering_mod: 0,
-        apparatchik_mod: 0,
-        quota_mod: 0,
-        robot_mod: 0,
-        dossier_mod: 0,
-        delusion_mod: 0,
-        lens_mod: 0,
-        opera_mod: 0,
-        transcendence_mod: 0,
-        gunsmoke_mod: 0,
-        prohibition_mod: 0,
-        gizmo_mod: 0,
-        oldtime_religion_mod: 0,
-        items: vec![],
-        xp: 0,
-        skill_points: 0,
-        dialogues_entered: HashSet::new(),
-        flags: HashSet::new(),
+            tech: 1,
+            arts: 1,
+            bur: 1, //short for bureaucracy
+            und: 1, //short for underworld
+            checkmate_mod: 0,
+            rocketry_mod: 0,
+            pathology_mod: 0,
+            civic_engineering_mod: 0,
+            apparatchik_mod: 0,
+            quota_mod: 0,
+            robot_mod: 0,
+            dossier_mod: 0,
+            delusion_mod: 0,
+            lens_mod: 0,
+            opera_mod: 0,
+            transcendence_mod: 0,
+            gunsmoke_mod: 0,
+            prohibition_mod: 0,
+            gizmo_mod: 0,
+            oldtime_religion_mod: 0,
+            items: vec![],
+            xp: 0,
+            skill_points: 0,
+            dialogues_entered: HashSet::new(),
+            flags: HashSet::new(),
         }
     }
 }
 
 struct DialogueEditorApp {
     dialogues: HashMap<String, Dialogue>, // Dialogues being edited
-    selected_dialogue: Option<String>,   // Currently selected dialogue ID
-    temp_id: String,                     // Temporary field for editing dialogue ID
+    selected_dialogue: Option<String>,    // Currently selected dialogue ID
+    temp_id: String,                      // Temporary field for editing dialogue ID
 }
 
 impl Default for DialogueEditorApp {
@@ -336,15 +346,14 @@ impl Default for DialogueEditorApp {
         //In the future, plan to transform this to load dialogues from room-specific files
 
         let (dialogues, temp_id) = initialize_dialogues("src/dialogues/clock.json").unwrap();
-            
+
         Self {
             dialogues,
             selected_dialogue: None,
-            temp_id
+            temp_id,
         }
     }
 }
-
 
 impl eframe::App for DialogueEditorApp {
     fn update(&mut self, ctx: &egui::Context, _frame: &mut eframe::Frame) {
@@ -382,7 +391,6 @@ impl eframe::App for DialogueEditorApp {
     }
 }
 
-
 impl DialogueEditorApp {
     fn create_dialogue(&mut self) {
         let id = create_dialogue(&mut self.dialogues); // Use the function from lib.rs
@@ -398,7 +406,9 @@ impl DialogueEditorApp {
                     self.temp_id = selected_id.clone(); // Initialize temp_id
                 }
 
-                if let Some(new_id) = edit_dialogue(ui, selected_id, &mut dialogue, &mut self.temp_id) {
+                if let Some(new_id) =
+                    edit_dialogue(ui, selected_id, &mut dialogue, &mut self.temp_id)
+                {
                     self.dialogues.insert(new_id.clone(), dialogue);
                     self.selected_dialogue = Some(new_id);
                     self.temp_id.clear();
@@ -435,7 +445,7 @@ impl DialogueEditorApp {
     }
 }
 
-
+// adding clap functionality so I can specify which dialogue file to access from main
 
 fn main() -> Result<(), eframe::Error> {
     let options = eframe::NativeOptions::default();
@@ -453,4 +463,3 @@ fn main() -> Result<(), eframe::Error> {
 // look more into the actual functioning and syntax of Box and eframe more generally, I'd like to be able to do that myself going forward
 
 // going forward, I plan to put the isometric aspects on hold, instead focus on making this a functional text game, and then enabling images, more visual novel style
-
